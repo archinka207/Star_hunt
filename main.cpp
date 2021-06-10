@@ -1,13 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "gamer.hpp"
-#include <math.h> 
-using namespace std;
+#include "game.hpp"
+#include "gamestate.hpp"
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
-    InitGamer();
+    ChangeGameState(new MenuState()); //press enter
 
     sf::Time sleepTime = sf::milliseconds(40);
     while (window.isOpen()) {
@@ -18,13 +18,12 @@ int main()
             }
         }
 
-        UpdateGamer();
+        UpdateGame();
 
         //-----
         window.clear();
-        DrawGamer(window);
+        DrawGame(window);
         window.display();
         sf::sleep(sleepTime);
     }
-
 }
