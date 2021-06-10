@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "gamer.hpp"
-
+#include <math.h> 
+using namespace std;
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
