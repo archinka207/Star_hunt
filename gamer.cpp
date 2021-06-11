@@ -11,13 +11,13 @@ float gamer_sped = 0;
 float pi = 3.14159265;
 sf::RectangleShape gamer(sf::Vector2f(30.f, 30.f));
 
-void InitGamer() {
+void Gamer::Init() {
   gamer.setPosition(gamer_x,gamer_y);
   gamer.setFillColor(sf::Color::White);
   gamer.setOrigin(sf::Vector2f(15.f,15.f));
 }
 
-void UpdateGamer() {
+void Gamer::Update() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (gamer_sped < gamer_max_sped) {
           gamer_sped -= 2;
@@ -58,6 +58,6 @@ void UpdateGamer() {
   cout << angle_sped << endl;
 }
 
-void DrawGamer(sf::RenderWindow &window) {
+void Gamer::Draw(sf::RenderWindow &window) {
   window.draw(gamer);
 }

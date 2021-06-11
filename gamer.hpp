@@ -6,8 +6,10 @@
 const int gamer_max_sped = 6;
 const int gamer_min_sped = -6;
 
-void InitGamer();
-void UpdateGamer();
-void DrawGamer(sf::RenderWindow &window);
+namespace Gamer {
+  void Init();
+  void Update();
+  void Draw(sf::RenderWindow &window);
+}
 
 #endif
