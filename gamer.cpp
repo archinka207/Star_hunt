@@ -3,17 +3,23 @@
 #include "gamer.hpp"
 #include <math.h>
 using namespace std;
+
 float gamer_x = 400.f;
 float gamer_y = 400.f;
-float angle_sped = 8;
+float angle_sped = 6;
+float angle = 0;
 float gamer_sped = 0;
+const int gamer_max_sped = 6;
+const int gamer_min_sped = -6;
+const float pi = 3.14159265;
 
-float pi = 3.14159265;
-sf::RectangleShape gamer(sf::Vector2f(30.f, 30.f));
+sf::Sprite gamer;
+sf::Texture gamerTexture;
 
 void InitGamer() {
+  gamerTexture.loadFromFile("Images/triangle.png");
+  gamer.setTexture(gamerTexture);
   gamer.setPosition(gamer_x,gamer_y);
-  gamer.setFillColor(sf::Color::White);
   gamer.setOrigin(sf::Vector2f(15.f,15.f));
 }
 
@@ -30,18 +36,19 @@ void UpdateGamer() {
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-     angle_sped -= 3;
-     if (angle_sped < -360) {
-         angle_sped = 0;
+     angle -= angle_sped;
+     if (angle < -360) {
+
+       angle = 0;
      }
-     gamer.setRotation(angle_sped);
+     gamer.setRotation(angle);
     }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-     angle_sped += 3;
-     if (angle_sped > 360) {
-         angle_sped = 0;
+     angle += angle_sped;
+     if (angle > 360) {
+         angle = 0;
      }
-     gamer.setRotation(angle_sped);
+     gamer.setRotation(angle);
   }
 
   if (gamer_sped > 0) {
@@ -51,9 +58,8 @@ void UpdateGamer() {
       gamer_sped += 1;
   }
 
-  gamer_x = gamer_x + (gamer_sped * cos(angle_sped*pi/180));
-  gamer_y = gamer_y + (gamer_sped * sin(angle_sped*pi/180));
-
+  gamer_x = gamer_x + (gamer_sped * cos(angle*pi/180));
+  gamer_y = gamer_y + (gamer_sped * sin(angle*pi/180));
   gamer.setPosition(gamer_x,gamer_y);
   cout << angle_sped << endl;
 }
