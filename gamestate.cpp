@@ -4,7 +4,7 @@
 
 void MenuState::Update() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-    ChangeGameState(new PlayingState());
+    Game::ChangeState(new PlayingState());
   }
 }
 
@@ -13,13 +13,13 @@ void MenuState::Draw(sf::RenderWindow &window) {
 }
 
 PlayingState::PlayingState() {
-  InitGamer();
+  Gamer::Init();
 }
 
 void PlayingState::Update() {
-  UpdateGamer();
+  Gamer::Update();
 }
 
 void PlayingState::Draw(sf::RenderWindow &window) {
-  DrawGamer(window);
+  Gamer::Draw(window);
 }

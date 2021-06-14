@@ -7,7 +7,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
-    ChangeGameState(new MenuState()); //press enter
+    Game::ChangeState(new MenuState()); //press enter
 
     sf::Time sleepTime = sf::milliseconds(40);
     while (window.isOpen()) {
@@ -18,11 +18,11 @@ int main()
             }
         }
 
-        UpdateGame();
+        Game::Update();
 
         //-----
         window.clear();
-        DrawGame(window);
+        Game::Draw(window);
         window.display();
         sf::sleep(sleepTime);
     }
