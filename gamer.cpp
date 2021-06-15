@@ -23,7 +23,7 @@ void InitGamer() {
   gamer.setOrigin(sf::Vector2f(15.f,15.f));
 }
 
-void UpdateGamer() {
+void Gamer::Update() {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (gamer_sped < gamer_max_sped) {
           gamer_sped -= 2;
@@ -64,6 +64,6 @@ void UpdateGamer() {
   cout << angle_sped << endl;
 }
 
-void DrawGamer(sf::RenderWindow &window) {
+void Gamer::Draw(sf::RenderWindow &window) {
   window.draw(gamer);
 }
