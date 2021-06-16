@@ -4,10 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "gamestate.hpp"
 
-namespace Game {
-  void ChangeState(GameState *state);
-  void Update();
-  void Draw(sf::RenderWindow &window);
-}
+void ChangeGameState(GameState *state);
+void UpdateGame();
+void DrawGame(sf::RenderWindow &window);
 
 #endif

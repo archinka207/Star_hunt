@@ -4,15 +4,15 @@
 
 GameState *current_game_state = nullptr;
 
-void Game::ChangeState(GameState *state) {
+void ChangeGameState(GameState *state) {
   if (current_game_state) delete current_game_state;
   current_game_state = state;
 }
 
-void Game::Update() {
+void UpdateGame() {
   current_game_state->Update();
 }
 
-void Game::Draw(sf::RenderWindow &window) {
+void DrawGame(sf::RenderWindow &window) {
   current_game_state->Draw(window);
 }

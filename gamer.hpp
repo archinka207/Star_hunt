@@ -2,10 +2,8 @@
 #define GAMER_HPP_
 #include <SFML/Graphics.hpp>
 
-namespace Gamer {
-  void Init();
-  void Update();
-  void Draw(sf::RenderWindow &window);
-}
+void InitGamer();
+void UpdateGamer();
+void DrawGamer(sf::RenderWindow &window);
 
 #endif
