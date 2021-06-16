@@ -1,5 +1,5 @@
-#ifndef GAMER_HPP_
-#define GAMER_HPP_
+#ifndef BULLET_HPP_
+#define BULLET_HPP_
 
 #include <memory>
 #include <SFML/Graphics.hpp>

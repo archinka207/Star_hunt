@@ -70,7 +70,7 @@ void Gamer::Update() {
   }
   if (bullet_arr.size() != 0) {
     for (int i = 0; i < bullet_arr.size(); i++) {
-      bullet_arr[i] -> Update;
+      bullet_arr[i] -> Update();
     }
   }
 }
@@ -80,6 +80,7 @@ void Gamer::Draw(sf::RenderWindow &window) {
 
   if (bullet_arr.size() != 0) {
     for (int i = 0; i < bullet_arr.size(); i++) {
-      window.draw(*bullet_arr[i];
+      bullet_arr[i] -> Draw(window);
     }
+  }
 }

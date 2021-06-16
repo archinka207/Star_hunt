@@ -22,8 +22,6 @@ int main()
       }
     }
 
-
-
     Game::Update();
 
     window.clear();
