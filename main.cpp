@@ -5,25 +5,28 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+  sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
-    ChangeGameState(new MenuState()); //press enter
+  Game::ChangeGameState(new MenuState()); //press enter
 
-    sf::Time sleepTime = sf::milliseconds(40);
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-
-        UpdateGame();
-
-        //-----
-        window.clear();
-        DrawGame(window);
-        window.display();
-        sf::sleep(sleepTime);
+  sf::Time sleepTime = sf::milliseconds(40);
+  while (window.isOpen()) {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed) {
+        window.close();
+      }
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+      Game::ChangeGameState(new PlayingState());
+    }
+
+    Game::Update();
+
+    window.clear();
+    Game::Draw(window);
+    window.display();
+    sf::sleep(sleepTime);
+  }
 }
