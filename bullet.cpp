@@ -5,7 +5,7 @@
 
 sf::Texture bullet_texture;
 sf::Sprite bullet;
-const int bullet_spide = 6;
+const int bullet_spide = -3;
 const float pi = 3.14159265;
 float bullet_x;
 float bullet_y;

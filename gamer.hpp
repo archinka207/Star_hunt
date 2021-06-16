@@ -3,11 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Gamer {
-public:
-  const float pi = 3.14159265;
-  const int gamer_max_sped = 6;
-  const int gamer_min_sped = -6;
+namespace Gamer {
 
   void Init();
   void Update();

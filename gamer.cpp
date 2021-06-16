@@ -14,6 +14,9 @@ float gamer_y = 400.f;
 float angle_sped = 10;
 float angle = 90;
 float gamer_sped = 0;
+const float pi = 3.14159265;
+const int gamer_max_sped = 6;
+const int gamer_min_sped = -6;
 
 sf::Sprite gamer;
 sf::Texture gamerTexture;
