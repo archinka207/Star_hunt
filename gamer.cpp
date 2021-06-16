@@ -16,7 +16,7 @@ const float pi = 3.14159265;
 sf::Sprite gamer;
 sf::Texture gamerTexture;
 
-void InitGamer() {
+void Gamer::Init() {
   gamerTexture.loadFromFile("Images/triangle.png");
   gamer.setTexture(gamerTexture);
   gamer.setPosition(gamer_x,gamer_y);
