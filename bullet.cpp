@@ -1,7 +1,6 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "bullet.hpp"
-#include "gamer.hpp"
 #include <math.h>
 
 sf::Texture bullet_texture;

@@ -1,8 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "gamer.hpp"
 #include <math.h>
+#include <vector>
+#include "gamer.hpp"
+#include "bullet.hpp"
+
 using namespace std;
+
+vector<Bullet* > bullet_arr;
+
 float gamer_x = 400.f;
 float gamer_y = 400.f;
 float angle_sped = 10;
@@ -58,18 +64,22 @@ void Gamer::Update() {
   gamer_y = gamer_y + (gamer_sped * sin(angle*pi/180));
 
   gamer.setPosition(gamer_x,gamer_y);
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    bullet_arr.push_back(new Bullet(gamer_x,gamer_y,angle));
+  }
+  if (bullet_arr.size() != 0) {
+    for (int i = 0; i < bullet_arr.size(); i++) {
+      bullet_arr[i] -> Update;
+    }
+  }
 }
 
 void Gamer::Draw(sf::RenderWindow &window) {
   window.draw(gamer);
-}
 
-float Gamer::get_x() {
-  return gamer_x;
-}
-float Gamer::get_y() {
-  return gamer_y;
-}
-float Gamer::get_angle() {
-  return angle;
+  if (bullet_arr.size() != 0) {
+    for (int i = 0; i < bullet_arr.size(); i++) {
+      window.draw(*bullet_arr[i];
+    }
 }

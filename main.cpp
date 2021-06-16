@@ -1,10 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "game.hpp"
+#include "bullet.hpp"
 #include "gamestate.hpp"
+
+using namespace std;
 
 int main()
 {
+
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
 
   Game::ChangeGameState(new MenuState()); //press enter
@@ -18,9 +22,7 @@ int main()
       }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-      Game::ChangeGameState(new PlayingState());
-    }
+
 
     Game::Update();
 
