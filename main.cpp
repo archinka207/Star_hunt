@@ -6,15 +6,24 @@
 
 using namespace std;
 
+
 int main()
 {
-
+  sf::Texture map_t;
+  sf::Sprite map;
+  map_t.loadFromFile("image/map.png");
+  map.setTexture(map_t);
+  sf::Clock clock;
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
-
   Game::ChangeGameState(new MenuState()); //press enter
+  float  time;
 
-  sf::Time sleepTime = sf::milliseconds(40);
   while (window.isOpen()) {
+
+    time = clock.getElapsedTime().asMilliseconds();
+    clock.restart();
+    time /= 800;
+
     sf::Event event;
     while (window.pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
@@ -22,11 +31,12 @@ int main()
       }
     }
 
-    Game::Update();
+    Game::Update(time);
 
     window.clear();
+    window.draw(map);
     Game::Draw(window);
     window.display();
-    sf::sleep(sleepTime);
+    sf::sleep(sf::milliseconds(2));
   }
 }

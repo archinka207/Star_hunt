@@ -7,7 +7,7 @@
 class Bullet {
 public:
   Bullet(float gamer_x, float gamer_y, float gamer_angle);
-  void Update();
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
 };
 

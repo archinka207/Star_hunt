@@ -2,7 +2,7 @@
 #include "gamer.hpp"
 #include "game.hpp"
 
-void MenuState::Update() {
+void MenuState::Update(float time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
     Game::ChangeGameState(new PlayingState());
   }
@@ -16,8 +16,8 @@ PlayingState::PlayingState() {
   Gamer::Init();
 }
 
-void PlayingState::Update() {
-  Gamer::Update();
+void PlayingState::Update(float time) {
+  Gamer::Update(time);
 }
 
 void PlayingState::Draw(sf::RenderWindow &window) {

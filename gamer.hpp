@@ -6,8 +6,8 @@
 namespace Gamer {
 
   void Init();
-  void Update();
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
-};
+}
 
 #endif

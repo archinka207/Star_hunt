@@ -12,8 +12,8 @@ void Game::ChangeGameState(GameState *state) {
   current_game_state = state;
 }
 
-void Game::Update() {
-  current_game_state->Update();
+void Game::Update(float time) {
+  current_game_state->Update(time);
 }
 
 void Game::Draw(sf::RenderWindow &window) {
