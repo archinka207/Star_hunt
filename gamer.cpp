@@ -2,24 +2,29 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+
 #include "gamer.hpp"
 #include "bullet.hpp"
+#include "grifer.hpp"
 
 using namespace std;
 
 vector<Bullet* > bullet_arr;
+vector<Grifer* > grifer_arr;
 
 float gamer_x = 400.f;
 float gamer_y = 400.f;
 float angle_sped = 0.5;
 float angle = 90;
 float gamer_sped = 0;
+float grifer_time;
 const float pi = 3.14159265;
 const float gamer_max_sped = 2;
 const float gamer_min_sped = -2;
 
 sf::Sprite gamer;
 sf::Texture gamerTexture;
+sf::Clock grifer_clock;
 
 void Gamer::Init() {
   gamerTexture.loadFromFile("image/triangle.png");
@@ -30,6 +35,7 @@ void Gamer::Init() {
 }
 
 void Gamer::Update(float time) {
+  grifer_time = grifer_clock.getElapsedTime().asMilliseconds();
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (gamer_sped < gamer_max_sped) {
       gamer_sped -= 0.5;
@@ -64,9 +70,9 @@ void Gamer::Update(float time) {
   }
   gamer_x = gamer_x + ((gamer_sped * cos(angle*pi/180)*time));
   gamer_y = gamer_y + ((gamer_sped * sin(angle*pi/180)*time));
-
   gamer.setPosition(gamer_x,gamer_y);
 
+  //тут заполняю и обновляю массив пуль
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
     bullet_arr.push_back(new Bullet(gamer_x,gamer_y,angle));
   }
@@ -75,14 +81,41 @@ void Gamer::Update(float time) {
       bullet_arr[i] -> Update(time);
     }
   }
+  // тут заполняю и обновляю массив гриферов 
+  if (grifer_time > 500) {
+    grifer_clock.restart();
+    grifer_arr.push_back(new Grifer());
+  }
+  if (grifer_arr.size() != 0) {
+    for (int i = 0; i < grifer_arr.size(); i++) {
+      grifer_arr[i] -> Update(time);
+    }
+  }
+  // чек на столкновение грифера и пули
+  if((grifer_arr.size() != 0) && (bullet_arr.size() != 0)) {
+    for (int i = 0; i < grifer_arr.size(); i++) {
+      for (int j = 0; j < bullet_arr.size(); j++) {
+        if (grifer_arr[i] -> Rect(bullet_arr[j] -> Get_rect())) {
+          grifer_arr.erase(grifer_arr.begin() + i);
+          bullet_arr.erase(bullet_arr.begin() + j);
+        }
+      }
+    }
+  }
 }
 
 void Gamer::Draw(sf::RenderWindow &window) {
   window.draw(gamer);
-
+  // тут отрисовываю пули
   if (bullet_arr.size() != 0) {
     for (int i = 0; i < bullet_arr.size(); i++) {
       bullet_arr[i] -> Draw(window);
+    }
+  }
+  // тут отрисовываю гриферов
+  if (grifer_arr.size() != 0) {
+    for (int i = 0; i < grifer_arr.size(); i++) {
+      grifer_arr[i] -> Draw(window);
     }
   }
 }

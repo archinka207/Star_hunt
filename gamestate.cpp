@@ -14,6 +14,10 @@ void MenuState::Draw(sf::RenderWindow &window) {
 
 PlayingState::PlayingState() {
   Gamer::Init();
+  sf::Texture map_t;
+  sf::Sprite map;
+  map_t.loadFromFile("image/map.png");
+  map.setTexture(map_t);
 }
 
 void PlayingState::Update(float time) {
@@ -22,4 +26,5 @@ void PlayingState::Update(float time) {
 
 void PlayingState::Draw(sf::RenderWindow &window) {
   Gamer::Draw(window);
+  window.draw(map);
 }

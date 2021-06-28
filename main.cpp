@@ -9,17 +9,14 @@ using namespace std;
 
 int main()
 {
-  sf::Texture map_t;
-  sf::Sprite map;
-  map_t.loadFromFile("image/map.png");
-  map.setTexture(map_t);
   sf::Clock clock;
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
   Game::ChangeGameState(new MenuState()); //press enter
   float  time;
+  double all_time;
 
   while (window.isOpen()) {
-
+    all_time = clock.getElapsedTime().asMilliseconds();
     time = clock.getElapsedTime().asMilliseconds();
     clock.restart();
     time /= 800;
@@ -34,7 +31,6 @@ int main()
     Game::Update(time);
 
     window.clear();
-    window.draw(map);
     Game::Draw(window);
     window.display();
     sf::sleep(sf::milliseconds(2));
