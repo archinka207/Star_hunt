@@ -7,6 +7,6 @@ public:
     Grifer();
     void Update(float time);
     void Draw(sf::RenderWindow &window);
-    bool Rect(sf::Rect<int> &rectangle);
+    bool Rect (sf::Rect<int> &rectangle);
 };
 #endif

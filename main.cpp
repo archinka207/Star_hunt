@@ -13,10 +13,9 @@ int main()
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
   Game::ChangeGameState(new MenuState()); //press enter
   float  time;
-  double all_time;
 
   while (window.isOpen()) {
-    all_time = clock.getElapsedTime().asMilliseconds();
+
     time = clock.getElapsedTime().asMilliseconds();
     clock.restart();
     time /= 800;

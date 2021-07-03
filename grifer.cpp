@@ -4,7 +4,7 @@
 
 sf::Sprite grifer;
 sf::Texture griferTexture;
-float grifer_sped = rand()%3;
+float grifer_sped = rand()%3+10;
 float grifer_angle;
 float grifer_x = rand()%700;
 float grifer_y = rand()%700;
@@ -26,7 +26,7 @@ void Grifer::Update(float time) {
     grifer_rect.top = grifer_y;
 }
 
-bool Grifer::Rect(sf::Rect<int> &rectangle) {
+bool Grifer::Rect (sf::Rect<int> &rectangle) {
     if (grifer_rect.intersects(rectangle)) return true;
     else return false;
 }

@@ -9,6 +9,7 @@ public:
   Bullet(float gamer_x, float gamer_y, float gamer_angle);
   void Update(float time);
   void Draw(sf::RenderWindow &window);
+  sf::Rect<int> Get_rect();
 };
 
 #endif
