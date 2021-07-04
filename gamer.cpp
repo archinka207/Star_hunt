@@ -34,7 +34,7 @@ void Gamer::Init() {
   gamer.setOrigin(sf::Vector2f(15.f,15.f));
 }
 
-void Gamer::Update(float time) {
+void Gamer::Update(long double time) {
   //cout << gamer_x << "\t" << gamer_y << endl;
   //передвижение 
   grifer_time = grifer_clock.getElapsedTime().asMilliseconds();
@@ -94,8 +94,8 @@ void Gamer::Update(float time) {
       grifer_arr[i].Update(time);
     }
   }
-  cout << "bullet_arr.size() = " << bullet_arr.size() << endl;
-  cout << "grifer_arr.size() = " << grifer_arr.size() << endl;
+  //cout << "bullet_arr.size() = " << bullet_arr.size() << endl;
+  //cout << "grifer_arr.size() = " << grifer_arr.size() << endl;
   // чек на столкновение грифера и пули
   if((grifer_arr.size() != 0) && (bullet_arr.size() != 0)) {
     for (int i = 0; i < grifer_arr.size(); i++) {
