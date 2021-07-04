@@ -104,6 +104,8 @@ void Gamer::Update(float time) {
         if (grifer_arr[i].Rect(rect)) {
           grifer_arr.erase(grifer_arr.begin() + i);
           bullet_arr.erase(bullet_arr.begin() + j);
+          --i;
+          break;
         }
       }
     }
