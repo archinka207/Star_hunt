@@ -6,7 +6,7 @@
 
 namespace Game {
   void ChangeGameState(GameState *state);
-  void Update(float  time);
+  void Update(long double time);
   void Draw(sf::RenderWindow &window);
 }
 

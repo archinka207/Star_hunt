@@ -12,7 +12,7 @@ void Game::ChangeGameState(GameState *state) {
   current_game_state = state;
 }
 
-void Game::Update(float time) {
+void Game::Update(long double time) {
   current_game_state->Update(time);
 }
 

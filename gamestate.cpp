@@ -5,7 +5,7 @@
 sf::Texture map_t;
 sf::Sprite map;
 
-void MenuState::Update(float time) {
+void MenuState::Update(long double time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
     Game::ChangeGameState(new PlayingState());
   }
@@ -21,7 +21,7 @@ PlayingState::PlayingState() {
   map.setTexture(map_t);
 }
 
-void PlayingState::Update(float time) {
+void PlayingState::Update(long double time) {
   Gamer::Update(time);
 }
 

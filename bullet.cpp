@@ -26,7 +26,7 @@ Bullet::Bullet(float gamer_x_pos, float gamer_y_pos, float gamer_angle) {
   std::cout << bullet_angle << std::endl;
 }
 
-void Bullet::Update(float time) {
+void Bullet::Update(long double time) {
   bullet_x = bullet_x + ((bullet_spide * cos(bullet_angle*pi/180)*time));
   bullet_y = bullet_y + ((bullet_spide * sin(bullet_angle*pi/180)*time));
   bullet.setPosition(bullet_x,bullet_y);
