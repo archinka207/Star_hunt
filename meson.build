@@ -13,3 +13,7 @@ executable('pyaniyasteroid',
            'grifer.cpp',
            dependencies: sfmldep,
            install : true)
+
+assetcopy = find_program('scripts/assetcopy.sh')
+
+run_command(assetcopy)
