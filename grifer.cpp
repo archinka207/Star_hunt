@@ -6,15 +6,13 @@
 const float pi = 3.14159265;
 
 Grifer::Grifer() {
-    if (griferTexture.loadFromFile("image/triangle.png")) {
+    if (griferTexture.getSize().x != 0 || griferTexture.loadFromFile("image/buhlo.png")) {
         grifer.setTexture(griferTexture);
     }
     grifer.setPosition(sf::Vector2f(grifer_x, grifer_y));
 }
 
 void Grifer::Update(long double time) {
-    //griferTexture.loadFromFile("image/buhlo.png");
-    //grifer.setTexture(griferTexture);
     grifer_x = grifer_x + (grifer_sped * cos(grifer_angle*pi/180) * time);
     grifer_y = grifer_y + (grifer_sped * sin(grifer_angle*pi/180) * time);
     grifer.setPosition(grifer_x, grifer_y);
