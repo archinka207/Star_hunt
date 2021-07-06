@@ -6,7 +6,7 @@
 namespace Gamer {
 
   void Init();
-  void Update(long double time);
+  void Update(long double time, const sf::Rect<int> & map_rectref);
   void Draw(sf::RenderWindow &window);
 }
 

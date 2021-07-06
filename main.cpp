@@ -12,6 +12,7 @@ int main()
   sf::Clock clock;
   sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
   Game::ChangeGameState(new MenuState()); //press enter
+  
   long double  time;
 
   while (window.isOpen()) {

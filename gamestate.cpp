@@ -2,8 +2,6 @@
 #include "gamer.hpp"
 #include "game.hpp"
 
-sf::Texture map_t;
-sf::Sprite map;
 
 void MenuState::Update(long double time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
@@ -22,7 +20,7 @@ PlayingState::PlayingState() {
 }
 
 void PlayingState::Update(long double time) {
-  Gamer::Update(time);
+  Gamer::Update(time , map_rect);
 }
 
 void PlayingState::Draw(sf::RenderWindow &window) {
