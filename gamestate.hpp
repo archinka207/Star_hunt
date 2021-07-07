@@ -1,31 +1,38 @@
 #ifndef GAMESTATE_HPP_
 #define GAMESTATE_HPP_
 
+#include <vector>
 #include <SFML/Graphics.hpp>
+#include "bullet.hpp"
+#include "grifer.hpp"
 
 class GameState {
 public:
-  virtual void Update(long double time) = 0;
+  virtual void Update(float time) = 0;
   virtual void Draw(sf::RenderWindow &window) = 0;
   virtual ~GameState() = default;
 };
 
 class MenuState : public GameState {
 public:
-  void Update(long double time);
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
 };
 
 class PlayingState : public GameState {
 public:
   PlayingState();
-  void Update(long double time);
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
+  void AddBullet(Bullet bullet);
 private:
   sf::Texture map_t;
   sf::Sprite map;
   sf::Rect<int> map_rect = sf::Rect<int>(sf::Vector2<int>(0,0), sf::Vector2<int>(800,800));
-
+  std::vector<Bullet> bullets;
+  std::vector<Grifer> grifers;
+  sf::Clock grifer_clock;
+  static constexpr float grifer_tts = 1.0f;
 };
 
 #endif

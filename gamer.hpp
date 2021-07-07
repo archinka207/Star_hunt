@@ -2,11 +2,11 @@
 #define GAMER_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 namespace Gamer {
-
   void Init();
-  void Update(long double time, const sf::Rect<int> & map_rectref);
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
 }
 
