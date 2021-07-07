@@ -5,9 +5,8 @@
 #include <SFML/Graphics/Rect.hpp>
 
 namespace Gamer {
-
   void Init();
-  void Update(float time, sf::FloatRect map_rect);
+  void Update(float time);
   void Draw(sf::RenderWindow &window);
 }
 

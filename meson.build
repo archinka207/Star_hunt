@@ -6,8 +6,8 @@ sfmldep = dependency('sfml-all')
 
 executable('pyaniyasteroid',
            'main.cpp',
-           'gamer.cpp',
            'game.cpp',
+           'gamer.cpp',
            'gamestate.cpp',
            'bullet.cpp',
            'grifer.cpp',

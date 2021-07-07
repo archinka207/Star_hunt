@@ -8,6 +8,12 @@ namespace Game {
   void ChangeGameState(GameState *state);
   void Update(float time);
   void Draw(sf::RenderWindow &window);
+
+  GameState& GetCurrentGameStateGeneric();
+  template<typename T>
+  T& GetCurrentGameState() {
+    return (T&)GetCurrentGameStateGeneric();
+  }
 }
 
 #endif

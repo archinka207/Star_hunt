@@ -2,20 +2,26 @@
 #include <SFML/Graphics.hpp>
 #include "game.hpp"
 
-GameState* current_game_state = nullptr;
+namespace Game {
+  GameState* current_game_state = nullptr;
 
-void Game::ChangeGameState(GameState *state) {
-  if (current_game_state) {
-    delete current_game_state;
+  GameState& GetCurrentGameStateGeneric() {
+    return *current_game_state;
   }
 
-  current_game_state = state;
-}
+  void ChangeGameState(GameState *state) {
+    if (current_game_state) {
+      delete current_game_state;
+    }
 
-void Game::Update(float time) {
-  current_game_state->Update(time);
-}
+    current_game_state = state;
+  }
 
-void Game::Draw(sf::RenderWindow &window) {
-  current_game_state->Draw(window);
+  void Update(float time) {
+    current_game_state->Update(time);
+  }
+
+  void Draw(sf::RenderWindow &window) {
+    current_game_state->Draw(window);
+  }
 }

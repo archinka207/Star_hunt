@@ -20,10 +20,57 @@ PlayingState::PlayingState() {
 }
 
 void PlayingState::Update(float time) {
-  Gamer::Update(time , map.getGlobalBounds());
+  //update game objects
+  Gamer::Update(time);
+  for (Bullet &b : bullets) {
+    b.Update(time);
+  }
+  for (Grifer &g : grifers) {
+    g.Update(time);
+  }
+  //bullet and grifer collision check
+  for (size_t i = 0; i < grifers.size(); ++i) {
+    for (size_t j = 0; j < bullets.size(); ++j) {
+      if (grifers[i].GetBounds().intersects(bullets[j].GetBounds())) {
+        grifers.erase(grifers.begin() + i);
+        bullets.erase(bullets.begin() + j);
+        --i;
+        break;
+      }
+    }
+  }
+  //grifers out of bounds check
+  for (size_t i = 0; i < grifers.size(); ++i) {
+    if (!map.getGlobalBounds().intersects(grifers[i].GetBounds())) {
+      grifers.erase(grifers.begin() + i);
+      --i;
+    }
+  }
+  //bullets out of bounds check
+  for (size_t i = 0; i < bullets.size(); ++i) {
+    if (!map.getGlobalBounds().intersects(bullets[i].GetBounds())) {
+      bullets.erase(bullets.begin() + i);
+      --i;
+    }
+  }
+  //spawn new grifer
+  if (grifer_clock.getElapsedTime().asSeconds() >= grifer_tts) {
+    grifer_clock.restart();
+    grifers.emplace_back();
+  }
 }
 
 void PlayingState::Draw(sf::RenderWindow &window) {
   window.draw(map);
   Gamer::Draw(window);
+  for (Bullet &b : bullets) {
+    b.Draw(window);
+  }
+  for (Grifer &g : grifers) {
+    g.Draw(window);
+  }
+}
+
+void PlayingState::AddBullet(Bullet bullet) {
+  bullets.push_back(bullet);
 }

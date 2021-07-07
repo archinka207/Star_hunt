@@ -1,7 +1,10 @@
 #ifndef GAMESTATE_HPP_
 #define GAMESTATE_HPP_
 
+#include <vector>
 #include <SFML/Graphics.hpp>
+#include "bullet.hpp"
+#include "grifer.hpp"
 
 class GameState {
 public:
@@ -21,11 +24,15 @@ public:
   PlayingState();
   void Update(float time);
   void Draw(sf::RenderWindow &window);
+  void AddBullet(Bullet bullet);
 private:
   sf::Texture map_t;
   sf::Sprite map;
   sf::Rect<int> map_rect = sf::Rect<int>(sf::Vector2<int>(0,0), sf::Vector2<int>(800,800));
-
+  std::vector<Bullet> bullets;
+  std::vector<Grifer> grifers;
+  sf::Clock grifer_clock;
+  static constexpr float grifer_tts = 1.0f;
 };
 
 #endif
