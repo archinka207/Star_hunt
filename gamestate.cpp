@@ -3,7 +3,7 @@
 #include "game.hpp"
 
 
-void MenuState::Update(long double time) {
+void MenuState::Update(float time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
     Game::ChangeGameState(new PlayingState());
   }
@@ -19,8 +19,8 @@ PlayingState::PlayingState() {
   map.setTexture(map_t);
 }
 
-void PlayingState::Update(long double time) {
-  Gamer::Update(time , map_rect);
+void PlayingState::Update(float time) {
+  Gamer::Update(time , map.getGlobalBounds());
 }
 
 void PlayingState::Draw(sf::RenderWindow &window) {

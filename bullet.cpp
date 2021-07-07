@@ -18,16 +18,14 @@ Bullet::Bullet(float gamer_x_pos, float gamer_y_pos, float gamer_angle) {
   
 }
 
-void Bullet::Update(long double time) {
+void Bullet::Update(float time) {
   bullet_x = bullet_x + ((bullet_spide * cos(bullet_angle*pi/180)*time));
   bullet_y = bullet_y + ((bullet_spide * sin(bullet_angle*pi/180)*time));
   bullet.setPosition(bullet_x,bullet_y);
-  bullet_rect.left = bullet_x;
-  bullet_rect.top = bullet_y;
 }
 
-sf::Rect<int> Bullet::Get_rect() {
-  return bullet_rect;
+sf::FloatRect Bullet::GetBounds() {
+  return bullet.getGlobalBounds();
 }
 
 void Bullet::Draw(sf::RenderWindow &window) {

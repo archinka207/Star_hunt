@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -36,7 +37,7 @@ void Gamer::Init() {
   gamer.setOrigin(sf::Vector2f(15.f,15.f));
 }
 
-void Gamer::Update(long double time , const sf::Rect<int> & map_rectref) {
+void Gamer::Update(float time , sf::FloatRect map_rect) {
   bullet_time = bullet_clock.getElapsedTime().asSeconds();
   //передвижение 
   grifer_time = grifer_clock.getElapsedTime().asMilliseconds();
@@ -99,8 +100,7 @@ void Gamer::Update(long double time , const sf::Rect<int> & map_rectref) {
   // чек на столкновение грифера и пули
   for (size_t i = 0; i < grifer_arr.size(); i++) {
     for (size_t j = 0; j < bullet_arr.size(); j++) {
-      sf::Rect<int> rect = bullet_arr[j].Get_rect();
-      if (grifer_arr[i].Rect(rect)) {
+      if (bullet_arr[j].GetBounds().intersects(grifer_arr[i].GetBounds())) {
         grifer_arr.erase(grifer_arr.begin() + i);
         bullet_arr.erase(bullet_arr.begin() + j);
         --i;
@@ -110,7 +110,7 @@ void Gamer::Update(long double time , const sf::Rect<int> & map_rectref) {
   }
   // чек на выход из карты
   for (size_t i = 0; i < bullet_arr.size(); ++i) {
-    if (!bullet_arr[i].Get_rect().intersects(map_rectref)) {
+    if (!bullet_arr[i].GetBounds().intersects(map_rect)) {
       bullet_arr.erase(bullet_arr.begin() + i);
       --i;
     }
