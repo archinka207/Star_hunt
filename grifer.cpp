@@ -20,7 +20,7 @@ void Grifer::Update(long double time) {
     grifer_rect.top = grifer_y;
 }
 
-bool Grifer::Rect (sf::Rect<int> &rectangle) {
+bool Grifer::Rect (const sf::Rect<int> &rectangle) {
     return grifer_rect.intersects(rectangle);
 }
 

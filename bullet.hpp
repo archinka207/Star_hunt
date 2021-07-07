@@ -11,7 +11,7 @@ public:
   void Draw(sf::RenderWindow &window);
   sf::Rect<int> Get_rect();
 private:
-  static const int bullet_spide = -300;
+  static constexpr float bullet_spide = -300;
   static constexpr float pi = 3.14159265;
   float bullet_x;
   float bullet_y;

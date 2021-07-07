@@ -7,7 +7,7 @@ public:
     Grifer();
     void Update(long double time);
     void Draw(sf::RenderWindow &window);
-    bool Rect (sf::Rect<int> &rectangle);
+    bool Rect (const sf::Rect<int> &rectangle);
 private:
     float grifer_sped = rand()%8+20;
     float grifer_angle = rand()%360;
