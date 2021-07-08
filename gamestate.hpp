@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "bullet.hpp"
 #include "grifer.hpp"
+#include "gamer.hpp"
 
 class GameState {
 public:
@@ -33,6 +34,8 @@ private:
   std::vector<Grifer> grifers;
   sf::Clock grifer_clock;
   static constexpr float grifer_tts = 1.0f;
+  //init gamer
+  Gamer gamer;
 };
 
 #endif

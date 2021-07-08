@@ -2,6 +2,9 @@
 #include "gamer.hpp"
 #include "game.hpp"
 
+sf::Clock bullet_clock;
+float bullet_time;
+Gamer gamer;
 
 void MenuState::Update(float time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
@@ -13,20 +16,31 @@ void MenuState::Draw(sf::RenderWindow &window) {
   window.clear(sf::Color(100, 200, 100, 255));
 }
 
+
 PlayingState::PlayingState() {
-  Gamer::Init();
+  sf::Vector2f new_gamer_centre(15.0f, 15.0f);
+  
+  gamer.Init(400, 400, 100 , 0, "triangle", new_gamer_centre);
   map_t.loadFromFile("image/map.png");
   map.setTexture(map_t);
 }
 
 void PlayingState::Update(float time) {
   //update game objects
-  Gamer::Update(time);
+  gamer.Update(time);
   for (Bullet &b : bullets) {
     b.Update(time);
   }
   for (Grifer &g : grifers) {
     g.Update(time);
+  }
+
+  // swan new bullet
+  float bullet_time = bullet_clock.getElapsedTime().asSeconds();
+  if (bullet_time > 1.0f && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    bullet_clock.restart();
+    sf::Vector2f new_bullet_centre(5.0f, 7.0f);
+    Game::GetCurrentGameState<PlayingState>().AddBullet(Bullet(gamer.Get_pos_x(), gamer.Get_pos_y(), 100.0f, gamer.Get_angle(), "bullet", new_bullet_centre));
   }
   //bullet and grifer collision check
   for (size_t i = 0; i < grifers.size(); ++i) {
@@ -62,7 +76,7 @@ void PlayingState::Update(float time) {
 
 void PlayingState::Draw(sf::RenderWindow &window) {
   window.draw(map);
-  Gamer::Draw(window);
+  gamer.Draw(window);
   for (Bullet &b : bullets) {
     b.Draw(window);
   }

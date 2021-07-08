@@ -1,19 +1,12 @@
 #ifndef GRIFER_HPP_
 #define GRIFER_HPP_
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include "gameobj.hpp"
 
-class Grifer {
+class Grifer : public GameObj {
 public:
-    Grifer();
+    Grifer(float pos_x, float pos_y, float speed, float angle , std::string file, sf::Vector2f centre);
     void Update(float time);
-    void Draw(sf::RenderWindow &window);
-    sf::FloatRect GetBounds();
-private:
-    float grifer_sped = rand()%8+20;
-    float grifer_angle = rand()%360;
-    float grifer_x = rand()%700;
-    float grifer_y = rand()%700;
-    sf::Sprite grifer;
-    inline static sf::Texture griferTexture;
 };
 #endif

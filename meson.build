@@ -11,6 +11,7 @@ executable('pyaniyasteroid',
            'gamestate.cpp',
            'bullet.cpp',
            'grifer.cpp',
+           'gameobj.cpp',
            dependencies: sfmldep,
            install : true)
 
