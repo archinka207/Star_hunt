@@ -33,9 +33,10 @@ private:
   std::vector<Bullet> bullets;
   std::vector<Grifer> grifers;
   sf::Clock grifer_clock;
+  sf::Font font;
+  sf::Text text;
   static constexpr float grifer_tts = 1.0f;
-  //init gamer
-  Gamer gamer;
+  int player_scores = 0;
 };
 
 #endif

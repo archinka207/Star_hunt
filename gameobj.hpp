@@ -7,7 +7,8 @@
 class GameObj {
 public:
   GameObj();
-  void Init(float pos_x, float pos_y, float speed, float angle , std::string file, sf::Vector2f centre);
+  //GameObj(GameObj& other);
+  virtual void Init(float pos_x, float pos_y, float speed, float angle, std::string file, sf::Vector2f centre) = 0;
   void Draw(sf::RenderWindow &window);
   sf::FloatRect GetBounds();
 
@@ -18,9 +19,8 @@ protected:
   float pos_y;
   float angle;
   sf::String file; 
-  // center it is object center
   sf::Vector2f centre;
-  inline static sf::Texture texture;
+  //inline static sf::Texture texture;
   sf::Sprite obj;
 };
 

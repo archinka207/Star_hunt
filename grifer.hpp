@@ -5,8 +5,11 @@
 #include "gameobj.hpp"
 
 class Grifer : public GameObj {
+    inline static sf::Texture texture;
 public:
-    Grifer(float pos_x, float pos_y, float speed, float angle , std::string file, sf::Vector2f centre);
+    Grifer();
+    Grifer(const Grifer& other);
     void Update(float time);
+    void Init(float pos_x, float pos_y, float speed, float angle, std::string file, sf::Vector2f centre);
 };
 #endif

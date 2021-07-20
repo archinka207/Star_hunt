@@ -5,6 +5,7 @@
 #include "gamer.hpp"
 
 void Gamer::Update(float time) {
+
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
     if (speed < gamer_max_sped) {
       speed -= 0.3;
@@ -42,6 +43,20 @@ void Gamer::Update(float time) {
   obj.setPosition(pos_x,pos_y);
 }
 
+void Gamer::Init(float pos_x, float pos_y, float speed, float angle , std::string file, sf::Vector2f centre) {
+  this -> pos_x = pos_x;
+  this -> pos_y = pos_y;
+  this -> speed  = speed;
+  this -> angle = angle;
+  this -> file = file;
+  this -> centre = centre;
+  if (texture.getSize().x != 0 || texture.loadFromFile("image/" + file +".png")) {
+    obj.setTexture(texture);
+  }
+  obj.setOrigin(centre);
+  obj.setPosition(pos_x,pos_y);
+  obj.setRotation(angle);
+}
 float Gamer::Get_pos_x() {return pos_x;}
 float Gamer::Get_pos_y() {return pos_y;}
 float Gamer::Get_angle() {return angle;}

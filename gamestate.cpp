@@ -23,9 +23,16 @@ PlayingState::PlayingState() {
   gamer.Init(400, 400, 100 , 0, "triangle", new_gamer_centre);
   map_t.loadFromFile("image/map.png");
   map.setTexture(map_t);
+  font.loadFromFile("VDS/VDS_Italic_New.ttf");
+  text.setFont(font);
+  text.setCharacterSize(30);
+  text.setPosition(650, 25);
 }
 
 void PlayingState::Update(float time) {
+  //text update
+  std::string scorses_str = std::to_string(player_scores);
+  text.setString("scores  " + scorses_str);
   //update game objects
   gamer.Update(time);
   for (Bullet &b : bullets) {
@@ -40,7 +47,10 @@ void PlayingState::Update(float time) {
   if (bullet_time > 1.0f && sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
     bullet_clock.restart();
     sf::Vector2f new_bullet_centre(5.0f, 7.0f);
-    Game::GetCurrentGameState<PlayingState>().AddBullet(Bullet(gamer.Get_pos_x(), gamer.Get_pos_y(), 100.0f, gamer.Get_angle(), "bullet", new_bullet_centre));
+    Game::GetCurrentGameState<PlayingState>().AddBullet(Bullet(gamer.Get_pos_x(), 
+                                                        gamer.Get_pos_y(), 200.0f, 
+                                                        gamer.Get_angle(), "bullet", 
+                                                        new_bullet_centre));
   }
   //bullet and grifer collision check
   for (size_t i = 0; i < grifers.size(); ++i) {
@@ -49,6 +59,7 @@ void PlayingState::Update(float time) {
         grifers.erase(grifers.begin() + i);
         bullets.erase(bullets.begin() + j);
         --i;
+        player_scores += 1;
         break;
       }
     }
@@ -76,6 +87,7 @@ void PlayingState::Update(float time) {
 
 void PlayingState::Draw(sf::RenderWindow &window) {
   window.draw(map);
+  window.draw(text);
   gamer.Draw(window);
   for (Bullet &b : bullets) {
     b.Draw(window);
